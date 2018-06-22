@@ -1,0 +1,560 @@
+@include animation();
+@include font();
+
+section.img-gallery-container {
+
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 20px;
+    margin-bottom: -15px;
+
+    @include full-block();
+
+    *, *:after, *:before{
+        @include box-sizing(border-box);
+    }
+
+    .img-gallery {
+        margin-left: -15px;
+
+        @include flex-box();
+        @include flex-direction(row);
+        @include flex-wrap(wrap);
+        @include align-items(center);
+        @include justify-content(center);
+
+        .picture {
+            position: relative;
+            margin-bottom: 15px;
+            margin-left: 15px;
+            overflow: hidden;
+
+            @include flex(calc(33.333% - 45px));
+            @include backface-visibility(hidden);
+
+            img {
+                cursor: pointer;
+
+                @include opacity(1);
+                @include backface-visibility(hidden);
+                @include transition(opacity .3s ease);
+            }
+
+            &:after {
+                content: '\e906';
+                font-family: 'galleryFont';
+                font-size: 4em;
+                position: absolute;
+                display: block;
+                color: white;
+                top: 50%;
+                left: 50%;
+                opacity: 0;
+                cursor: pointer;
+                
+                @include translate(-50%, -50%);
+                @include transition(opacity .3s ease);
+            }
+
+            &:hover:after { @include opacity(.7); }
+
+            &:hover img { @include opacity(.7); }
+
+            >img {
+                cursor: pointer;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+.loading {
+    z-index: 3;
+
+    @include full-absolute();
+
+    img {
+        width: 64px;
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 50%;
+        top: 50%;
+
+        @include translate(-50%, -50%);
+        @include opacity(.7);
+        @include transition(opacity 1.2s ease);
+    }
+
+    &.hide {
+        img { @include opacity(0); }
+    }
+}
+
+.loading {
+    z-index: 3;
+
+    @include full-absolute();
+
+    &:after,
+    &:before {
+        @include transition (opacity .5s ease-in-out);
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        left: calc(50% - 25px);
+        top: 50%;
+        z-index: 100;
+
+        @include loader($blue, white, .3s, 6px, 50px, 50px, solid);
+        @include translate(-50%, -50%);
+        @include background-size(cover);
+    }
+
+    &.hide { @include opacity(0); }
+}
+
+.display-none { display: none; }
+.overflow-hidden { overflow: hidden; }
+
+#overlay {
+    @include full-absolute();
+
+    position: fixed;
+    background-color: black;
+    display: none;
+    z-index: 1;
+
+    @include animation-duration(.3s);
+    @include animation-fill-mode(both);
+    @include animation-name(fadeInOverlay);
+
+    &.show { display: block; }
+}
+
+section.img-container {
+    display: none;
+    z-index: 2;
+
+    *, *:after, *:before{
+        @include box-sizing(border-box);
+    }
+
+    * { @include backface-visibility(hidden); }
+
+    @include full-absolute();
+
+    position: fixed;
+
+    &.show { display: block; }
+
+    &.disabled:after {
+        content: '';
+        z-index: 3;
+
+        @include full-absolute();
+    }
+
+    article.img-box {
+        width: auto;
+        height: auto;
+        position: fixed;
+        top: 50%;
+        z-index: 2;
+        left: 50%;
+        margin-top: -35px;
+
+        @include translate(-50%, -50%);
+        @include animation-duration(1s);
+        @include animation-fill-mode(both);
+        @include animation-delay(.6s);
+        @include animation-name(fadeIn);
+
+        img {
+            max-height: calc(100vh - 200px);
+            max-width: calc(100vw - 200px);
+            width: auto;
+            height: auto;
+            position: relative;
+            display: block;
+
+            @include opacity(1);
+            @include transition(opacity .3s ease);
+
+            &.opacity-hide { @include opacity(0); }
+        }
+
+        span.close {
+            cursor: pointer;
+            display: inline-block;
+            position: absolute;
+            margin-top: -17px;
+            margin-right: -12px;
+            right: 0;
+            top: 0;
+            z-index: 3;
+
+            i {
+                color: $blue;
+                font-size: 3em;
+
+                @include opacity(1);
+                @include transition(opacity .3s ease);
+
+                &:hover { @include opacity(.7);}
+            }
+
+            &.opacity-hide { @include opacity(0); }
+
+            &.hide {
+                display: none;
+                visibility: hidden;
+
+                @include opacity(0);
+            }
+        }
+    }
+
+    nav.arrow-container {
+        @include full-absolute();
+
+        position: fixed;
+        display: none;
+        z-index: 1;
+
+        &.show {
+            @include flex-box();
+            @include flex-direction(row);
+            @include flex-wrap(nowrap);
+            @include align-items(center);
+            @include justify-content(space-between);
+
+            .arrow-left,
+            .arrow-right {
+                position: relative;
+                width: auto;
+                font-size: 5em;
+                margin-top: -35px;
+            }
+
+            i {
+                position: relative;
+                cursor: pointer;
+                color: $blue;
+
+                @include opacity(1);
+                @include transition(opacity .3s ease);
+
+                &:hover { @include opacity(.7); }
+            }
+
+            .arrow-left { text-align: left; padding-left: 15px; left: 0; }
+            .arrow-right { text-align: right; padding-right: 15px; right: 0; }
+
+            .arrow-left.in-active i,
+            .arrow-right.in-active i {
+                cursor: default;
+
+                @include opacity(.05);
+            }
+        }
+    }
+
+    menu.top-function {
+        z-index: 2;
+        position: fixed;
+        left: 50%;
+        font-size: 1em;
+        line-height: 1;
+        font-weight: normal;
+        color: white;
+        top: 0;
+        text-align: center;
+        height: 40px;
+        width: auto;
+        padding: 0 15px;
+        text-align: center;
+
+        @include flex-box();
+        @include flex-direction(row);
+        @include flex-wrap(nowrap);
+        @include align-items(center);
+        @include justify-content(center);
+
+        @include translateX(-50%);
+
+        svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .controll {
+            z-index: 2;
+            padding: 0 15px;
+
+            @include flex-box();
+            @include flex-direction(row);
+            @include flex-wrap(nowrap);
+            @include align-items(center);
+            @include justify-content(center);
+
+            .full-screen-icon,
+            .auto-play-icon {
+                cursor: pointer;
+
+                @include flex-box();
+                @include flex-direction(row);
+                @include flex-wrap(nowrap);
+                @include align-items(center);
+                @include justify-content(center);
+                @include opacity(1);
+                @include transition(opacity .3s ease);
+
+                &:hover { @include opacity(.7); }
+
+                span { padding-right: 6px; }
+
+                i { font-size: 1.15em; }
+            }
+
+            .auto-play-icon { padding-right: 5px; }
+            .full-screen-icon { padding-left: 5px; }
+        }
+    }
+
+    .thumb-container {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 2;
+        background-color: $black;
+        text-align: center;
+
+        .thumb-content {
+            margin-bottom: -95px;
+
+            @include flex-box();
+            @include flex-direction(row);
+            @include flex-wrap(nowrap);
+            @include transition(margin-bottom .3s ease);
+            @include align-items(center);
+            @include justify-content(center);
+
+            &.hide {
+                display: none;
+                visibility: hidden;
+
+                @include opacity(0);
+            }
+
+            &.show { margin-bottom: 0; }
+
+            .thumb-box {
+                overflow: hidden;
+                white-space: nowrap;
+                width: auto;
+                display: inline-block;
+                vertical-align: top;
+                padding: 15px 0;
+
+                @include flex-box();
+                @include flex-direction(row);
+                @include flex-wrap(nowrap);
+                @include opacity(1);
+
+                .container {
+                    margin: 0;
+
+                    @include flex-box();
+                    @include flex-direction(row);
+                    @include flex-wrap(nowrap);
+                    @include transition(margin .3s ease);
+
+                    .thumb-img {
+                        display: inline-block;
+                        position: relative;
+                        vertical-align: top;
+                        width: 100px;
+                        height: 56px;
+                        overflow: hidden;
+                        clear: both;
+                        float: none;
+                        margin-right: 15px;
+
+                        @include transition(border-color .3s ease);
+
+                        &:last-child { margin-right: 0; }
+
+                        img {
+                            width: 100px;
+                            max-width: 100%;
+                            cursor: pointer;
+                            border: 2px solid transparent;
+
+                            @include opacity(1);
+                            @include transition(opacity .3s ease);
+
+                            &:hover { @include opacity(.7); }
+                        }
+
+                        &.active img { border: 2px solid white; }
+                    }
+                }
+            }
+
+            .thumb-left { margin-right: 15px; }
+            .thumb-right { margin-left: 15px; }
+
+            .thumb-left,
+            .thumb-right {
+                position: relative;
+                display: inline-block;
+                height: 80px;
+                font-size: 1em;
+                vertical-align: top;
+                visibility: visible;
+
+                @include opacity(1);
+                @include transition(opacity .3s ease);
+
+                i {
+                    position: relative;
+                    display: inline-block;
+                    top: 50%;
+                    cursor: pointer;
+                    color: $blue;
+
+                    @include translateY(-50%);
+                    @include opacity(1);
+                    @include transition(opacity .3s ease);
+
+                    &:hover { @include opacity(.7); }
+                }
+
+                &.in-active {
+                    i,
+                    i:hover {
+                        cursor: default;
+
+                        @include opacity(.05);
+                    }
+                }
+
+                &.display-none { @include opacity(0); visibility: hidden; }
+            }
+        }
+
+        .thumb-open-close {
+            position: absolute;
+            left: 50%;
+            font-size: 1em;
+            font-weight: normal;
+            color: white;
+            top: -29px;
+            text-align: center;
+            line-height: 30px;
+            border-bottom: 30px solid;
+            border-bottom-color: $black;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            height: 0;
+            width: auto;
+            cursor: pointer;
+            padding: 0 15px;
+
+            @include translateX(-50%);
+        }
+    }
+}
+
+@media only screen and (max-width: $tablet) {
+
+    section.img-container {
+        img {
+            max-width: calc(100vw - 50px);
+            max-height: calc(100vh - 90px);
+        }
+
+        article.img-box { margin-top: -20px; }
+
+        menu.top-function { display: none; }
+
+        nav.arrow-container {
+            &:after {
+                content: '';
+                position: fixed;
+                height: 47px;
+                bottom: 0;
+                width: 100%;
+                left: 0;
+                right: 0;
+                background-color: $black;
+                opacity: .8;
+            }
+
+            &.show {
+                @include align-items(flex-end);
+                @include justify-content(center);
+
+                .arrow-left { text-align: right; left: 0; }
+                .arrow-right { text-align: left; right: 0; }
+                .arrow-left i { margin-right: 15px; }
+                .arrow-right i { margin-left: 15px; }
+
+                .arrow-left,
+                .arrow-right {
+                    position: relative;
+                    display: inline-block;
+                    margin-top: 0;
+                    height: 47px;
+                    font-size: 3em;
+                    z-index: 3;
+
+                    i {
+                        position: relative;
+                        display: inline-block;
+                        top: 50%;
+
+                        @include translateY(-50%);
+                    }
+                }
+            }
+        }
+        .thumb-container {
+            display: none;
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            position: absolute;
+            left: -9999px;
+        }
+    }
+
+    section.img-gallery-container {
+        .img-gallery {
+            .picture { @include flex(calc(50% - 30px)); }
+        }
+    }
+}
+
+@media only screen and (max-width: $mobile) {
+    section.img-gallery-container {
+        .img-gallery {
+            margin-left: 0;
+
+            .picture {
+                margin-left: 0;
+                @include flex(calc(100%));
+            }
+        }
+    } 
+}

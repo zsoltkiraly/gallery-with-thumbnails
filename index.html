@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <title>Gallery with thumbnail v1.2.2 by Zsolt Kiraly</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/scripts.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Gallery with thumbnail <span>JavaScript Gallery with thumbnail v1.2.2 by Zsolt Kiraly</span></h1>
+    </header>
+
+    <section class="basic-content">
+        <h2>Sed et volutpat ligula</h2>
+        <p>Donec quis lorem sit amet tortor varius consectetur. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dictum quam diam, sit amet iaculis ex commodo id. Maecenas vitae finibus massa. Suspendisse potenti. Donec pulvinar nunc ut elit porttitor mattis.</p>
+        <p>Cras non arcu quis turpis lacinia suscipit et a purus. Mauris eu maximus massa. Nam sed vestibulum orci, ut cursus neque. Fusce eget dui eros. Mauris dictum lacus a eros fermentum, eu fringilla elit scelerisque. Sed et varius mauris. Pellentesque in ligula a mi lobortis rutrum. Vestibulum ac pretium nulla. Pellentesque tempor augue at purus tincidunt, maximus semper nisl blandit.</p>
+        <p>Mauris fermentum elementum urna, sed blandit metus elementum at. Nullam ac dui non orci volutpat lobortis in quis libero. Duis dignissim rutrum leo ac mollis. Sed et volutpat ligula, sollicitudin porttitor elit. Maecenas faucibus molestie mauris, ut efficitur lorem placerat a.</p>
+    </section>
+
+    <section id="gallery-with-thumbnail-1" class="img-gallery-container">
+        <div class="img-gallery">
+            <div data-src="images/1.jpg" class="picture"><img src="images/thumb/1.jpg" alt="1"></div>
+            <div data-src="images/2.jpg" class="picture"><img src="images/thumb/2.jpg" alt="2"></div>
+            <div data-src="images/3.jpg" class="picture"><img src="images/thumb/3.jpg" alt="3"></div>
+            <div data-src="images/4.jpg" class="picture"><img src="images/thumb/4.jpg" alt="4"></div>
+            <div data-src="images/5.jpg" class="picture"><img src="images/thumb/5.jpg" alt="5"></div>
+            <div data-src="images/6.jpg" class="picture"><img src="images/thumb/6.jpg" alt="6"></div>
+            <div data-src="images/7.jpg" class="picture"><img src="images/thumb/7.jpg" alt="7"></div>
+            <div data-src="images/8.jpg" class="picture"><img src="images/thumb/8.jpg" alt="8"></div>
+            <div data-src="images/9.jpg" class="picture"><img src="images/thumb/9.jpg" alt="9"></div>
+            <div data-src="images/10.jpg" class="picture"><img src="images/thumb/10.jpg" alt="10"></div>
+            <div data-src="images/11.jpg" class="picture"><img src="images/thumb/11.jpg" alt="11"></div>
+            <div data-src="images/12.jpg" class="picture"><img src="images/thumb/12.jpg" alt="12"></div>
+            <div data-src="images/13.jpg" class="picture"><img src="images/thumb/13.jpg" alt="13"></div>
+            <div data-src="images/14.jpg" class="picture"><img src="images/thumb/14.jpg" alt="14"></div>
+            <div data-src="images/15.jpg" class="picture"><img src="images/thumb/15.jpg" alt="15"></div>
+        </div>
+    </section>
+
+    <script>
+        galleryWithThumbnail.app(
+            config = {
+                contentBox: 'gallery-with-thumbnail-1',
+                continued: true,
+                closeNeutral: true,
+                closeEsc: true,
+                closeX: true,
+
+                loadingShow: true,
+
+                thumbShow: true,
+                thumbStart: 'show',
+                thumbShowText: 'Thumb pictures show',
+                thumbHideText: 'Thumb pictures hide',
+
+                fullScreenText: 'Fullscreen',
+                playOrPause: 'Play / Pause',
+
+                playTime: 5000,
+            }
+        );
+    </script>
+
+    <section class="basic-content">
+        <h2>Sed et volutpat ligula</h2>
+        <p>Donec quis lorem sit amet tortor varius consectetur. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dictum quam diam, sit amet iaculis ex commodo id. Maecenas vitae finibus massa. Suspendisse potenti. Donec pulvinar nunc ut elit porttitor mattis.</p>
+        <p>Cras non arcu quis turpis lacinia suscipit et a purus. Mauris eu maximus massa. Nam sed vestibulum orci, ut cursus neque. Fusce eget dui eros. Mauris dictum lacus a eros fermentum, eu fringilla elit scelerisque. Sed et varius mauris. Pellentesque in ligula a mi lobortis rutrum. Vestibulum ac pretium nulla. Pellentesque tempor augue at purus tincidunt, maximus semper nisl blandit.</p>
+        <p>Mauris fermentum elementum urna, sed blandit metus elementum at. Nullam ac dui non orci volutpat lobortis in quis libero. Duis dignissim rutrum leo ac mollis. Sed et volutpat ligula, sollicitudin porttitor elit. Maecenas faucibus molestie mauris, ut efficitur lorem placerat a.</p>
+    </section>
+
+    <footer>
+        <span>GitHub:</span> <a href="https://github.com/zsoltkiraly" title="GitHub" target="_blank">https://github.com/zsoltkiraly</a>
+    </footer>
+
+</body>
+
+</html>
