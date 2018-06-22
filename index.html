@@ -44,27 +44,29 @@
     </section>
 
     <script>
-        galleryWithThumbnail.app(
-            config = {
-                contentBox: 'gallery-with-thumbnail-1',
-                continued: true,
-                closeNeutral: true,
-                closeEsc: true,
-                closeX: true,
+        window.addEventListener('load', function() {
+            galleryWithThumbnail.app(
+                config = {
+                    contentBox: 'gallery-with-thumbnail-1',
+                    continued: true,
+                    closeNeutral: true,
+                    closeEsc: true,
+                    closeX: true,
 
-                loadingShow: true,
+                    loadingShow: true,
 
-                thumbShow: true,
-                thumbStart: 'show',
-                thumbShowText: 'Thumb pictures show',
-                thumbHideText: 'Thumb pictures hide',
+                    thumbShow: true,
+                    thumbStart: 'show',
+                    thumbShowText: 'Thumb pictures show',
+                    thumbHideText: 'Thumb pictures hide',
 
-                fullScreenText: 'Fullscreen',
-                playOrPause: 'Play / Pause',
+                    fullScreenText: 'Fullscreen',
+                    playOrPause: 'Play / Pause',
 
-                playTime: 5000,
-            }
-        );
+                    playTime: 5000,
+                }
+            );
+        }, false);
     </script>
 
     <section class="basic-content">
