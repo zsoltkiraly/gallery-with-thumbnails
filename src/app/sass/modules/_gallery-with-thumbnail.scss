@@ -74,29 +74,6 @@ section.img-gallery-container {
 
     @include full-absolute();
 
-    img {
-        width: 64px;
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 50%;
-        top: 50%;
-
-        @include translate(-50%, -50%);
-        @include opacity(.7);
-        @include transition(opacity 1.2s ease);
-    }
-
-    &.hide {
-        img { @include opacity(0); }
-    }
-}
-
-.loading {
-    z-index: 3;
-
-    @include full-absolute();
-
     &:after,
     &:before {
         @include transition (opacity .5s ease-in-out);
@@ -107,7 +84,7 @@ section.img-gallery-container {
         position: absolute;
         display: inline-block;
         left: calc(50% - 25px);
-        top: 50%;
+        top: 40%;
         z-index: 100;
 
         @include loader($blue, white, .3s, 6px, 50px, 50px, solid);

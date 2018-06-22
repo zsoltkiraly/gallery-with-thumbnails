@@ -14,7 +14,7 @@ var galleryWithThumbnail = function() {
 
     function clearPlayForward(arrow) {
         var topFunction = arrow.nextElementSibling;
-        autoPlayButton = arrow.nextElementSibling.querySelector('.auto-play-icon');
+        var autoPlayButton = arrow.nextElementSibling.querySelector('.auto-play-icon');
 
         topFunction.classList.add('display-none');
         autoPlayButton.classList.remove('play');
