@@ -84,7 +84,7 @@ section.img-gallery-container {
         position: absolute;
         display: inline-block;
         left: calc(50% - 25px);
-        top: 40%;
+        top: 50%;
         z-index: 100;
 
         @include loader($blue, white, .3s, 6px, 50px, 50px, solid);
