@@ -72,6 +72,18 @@ var galleryWithThumbnail = function() {
         tR.classList.add('in-active');
     }
 
+    function cancelFullScreen() {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        }
+    }
+
     function fullScreen() {
         if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement) {
 
@@ -86,15 +98,7 @@ var galleryWithThumbnail = function() {
             }
 
         } else {
-            if (document.cancelFullScreen) {
-                document.cancelFullScreen();
-
-            } else if (document.mozCancelFullScreen) {
-                document.mozCancelFullScreen();
-
-            } else if (document.webkitCancelFullScreen) {
-                document.webkitCancelFullScreen();
-            }
+            cancelFullScreen();
         }
     }
 
@@ -249,6 +253,7 @@ var galleryWithThumbnail = function() {
                 thumbRemoveActive(c);
                 clearInterval(playForward);
                 clearPlayForward(aC);
+                cancelFullScreen();
             };
 
             closeB.addEventListener('click', function() {
@@ -738,6 +743,7 @@ var galleryWithThumbnail = function() {
                     thumbRemoveActive(c);
                     clearInterval(playForward);
                     clearPlayForward(aC);
+                    cancelFullScreen();
                 }
             }
         }, false);
@@ -756,6 +762,7 @@ var galleryWithThumbnail = function() {
                         thumbRemoveActive(c);
                         clearInterval(playForward);
                         clearPlayForward(aC);
+                        cancelFullScreen();
                     }
                 }
             }
